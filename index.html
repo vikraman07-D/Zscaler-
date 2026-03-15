@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero Trust Security | Zscaler Private Access Implementation</title>
+    <meta name="description" content="A comprehensive cybersecurity project demonstrating Zero Trust Architecture using Zscaler Private Access (ZPA).">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <div class="bg-grid"></div>
+
+    <nav>
+        <div class="logo">
+            <span class="logo-icon"></span>
+            <span>SECURE<span class="gradient-text">ZPA</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#vulnerabilities">Vulnerabilities</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#usecases">Use Cases</a></li>
+            <li><a href="#team">Team</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero reveal">
+        <div class="badge">SECURE ACCESS REINVENTED</div>
+        <h1><span class="gradient-text">Zero Trust Security</span> Implementation using ZPA</h1>
+        <p>Replacing traditional VPNs with identity-aware, application-specific access. Welcome to the future of perimeter-less cybersecurity.</p>
+        <div class="cta-group">
+            <a href="#about" class="btn btn-primary">Explore Project</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="gradient-text">About the Project</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>The Zero Trust Paradigm</h3>
+                <p>Zero Trust is a security framework based on the principle of "never trust, always verify." It assumes that threats exist both inside and outside the network, requiring continuous authentication for every request.</p>
+            </div>
+            <div class="card">
+                <h3>The VPN Problem</h3>
+                <p>Traditional VPNs grant users broad network access once they are inside the perimeter. This "castle and moat" approach is vulnerable to lateral movement once a single point is compromised.</p>
+            </div>
+            <div class="card">
+                <h3>Project Objective</h3>
+                <p>To design and demonstrate a scalable Zero Trust Architecture using Zscaler Private Access (ZPA), providing granular access to internal applications without exposing the entire network.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture">
+        <h2 class="gradient-text">How ZPA Works</h2>
+        <p style="margin-bottom: 30px;">Zscaler Private Access (ZPA) uses a cloud-native service to create a secure segment between the user and the specific application.</p>
+        
+        <div class="vuln-item">
+            <h3>Identity-Based Access Control</h3>
+            <p>Access is granted not based on IP addresses but on the identity of the user and the health of the device. Integration with Identity Providers (IdP) ensures only authorized personnel can even see the applications.</p>
+        </div>
+
+        <div class="viz-container">
+            <div class="viz-placeholder">[ Architecture Diagram: User → ZPA Cloud → App Connector → Application ]</div>
+            <!-- Simple SVG representation -->
+            <svg width="600" height="250" viewBox="0 0 600 250" style="margin-top: 30px;">
+                <circle cx="100" cy="125" r="40" fill="none" stroke="#00d4ff" stroke-width="2" />
+                <text x="100" y="180" text-anchor="middle" fill="#94a3b8" font-size="12">Remote User</text>
+                
+                <line x1="140" y1="125" x2="260" y2="125" stroke="#00d4ff" stroke-dasharray="5,5" />
+                
+                <rect x="260" y="85" width="80" height="80" rx="10" fill="none" stroke="#00d4ff" stroke-width="2" />
+                <text x="300" y="130" text-anchor="middle" fill="#00d4ff" font-size="14" font-weight="bold">ZPA Cloud</text>
+                
+                <line x1="340" y1="125" x2="460" y2="125" stroke="#00d4ff" stroke-dasharray="5,5" />
+                
+                <rect x="460" y="85" width="80" height="80" rx="10" fill="none" stroke="#0072ff" stroke-width="2" />
+                <text x="500" y="130" text-anchor="middle" fill="#0072ff" font-size="14" font-weight="bold">Data Center</text>
+                <text x="500" y="180" text-anchor="middle" fill="#94a3b8" font-size="12">Internal App</text>
+            </svg>
+        </div>
+
+        <div class="vuln-item" style="margin-top: 50px;">
+            <h3>Micro-Tunnel Secure Connection</h3>
+            <p>ZPA creates a lightweight, encrypted micro-tunnel. The application is never exposed to the public internet, effectively making it "dark" to unauthorized users.</p>
+        </div>
+    </section>
+
+    <!-- Vulnerabilities Analysis -->
+    <section id="vulnerabilities">
+        <h2 class="gradient-text">Vulnerability Analysis</h2>
+        <p style="margin-bottom: 40px;">Understanding the threats that Zero Trust architecture helps to mitigate.</p>
+        
+        <div class="grid-3">
+            <div class="vuln-item">
+                <span class="badge">CRITICAL</span>
+                <h3>Cross-Site Scripting (XSS)</h3>
+                <p><strong>Description:</strong> Injection of malicious scripts into trusted websites.<br>
+                <strong>Impact:</strong> Session hijacking, data theft.<br>
+                <strong>Prevention:</strong> Input validation, Content Security Policy (CSP).</p>
+            </div>
+            <div class="vuln-item">
+                <span class="badge">CRITICAL</span>
+                <h3>SQL Injection (SQLi)</h3>
+                <p><strong>Description:</strong> Malicious SQL statements inserted into entry fields.<br>
+                <strong>Impact:</strong> Database integrity loss, sensitive data exposure.<br>
+                <strong>Prevention:</strong> Parameterized queries, ORM usage.</p>
+            </div>
+            <div class="vuln-item">
+                <span class="badge">HIGH</span>
+                <h3>Broken Authentication</h3>
+                <p><strong>Description:</strong> Flaws in auth mechanisms allowing credential theft.<br>
+                <strong>Impact:</strong> Unauthorized account takeover.<br>
+                <strong>Prevention:</strong> Multi-Factor Authentication (MFA).</p>
+            </div>
+            <div class="vuln-item">
+                <span class="badge">MEDIUM</span>
+                <h3>CSRF</h3>
+                <p><strong>Description:</strong> Forcing a user to execute unwanted actions.<br>
+                <strong>Impact:</strong> Unauthorized state changes (transfer funds, etc).<br>
+                <strong>Prevention:</strong> Anti-CSRF tokens.</p>
+            </div>
+            <div class="vuln-item">
+                <span class="badge">MEDIUM</span>
+                <h3>Security Misconfiguration</h3>
+                <p><strong>Description:</strong> Insecure default settings or incomplete configs.<br>
+                <strong>Impact:</strong> Easy entry for attackers.<br>
+                <strong>Prevention:</strong> Automated auditing, hardening guides.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools">
+        <h2 class="gradient-text">Tools for Implementation</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>Zscaler Private Access</h3>
+                <p>The core Zero Trust broker providing secure, policy-based access.</p>
+            </div>
+            <div class="card">
+                <h3>Burp Suite</h3>
+                <p>Used for web application security testing and vulnerability assessment.</p>
+            </div>
+            <div class="card">
+                <h3>Nessus Scanner</h3>
+                <p>Global standard for vulnerability assessment and compliance.</p>
+            </div>
+            <div class="card">
+                <h3>Kali Linux</h3>
+                <p>Advanced penetration testing platform for security auditing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="usecases">
+        <h2 class="gradient-text">Use Case Scenarios</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>Finance Dept</h3>
+                <p>Accessing the ERP system from home via ZPA Client Connector with MFA, ensuring financial records stay private.</p>
+            </div>
+            <div class="card">
+                <h3>Contractors</h3>
+                <p>Limited access to specific Git repositories only, without full network visibility, preventing lateral movement.</p>
+            </div>
+            <div class="card">
+                <h3>Executives</h3>
+                <p>Securely viewing confidential strategic documents on mobile devices with enforced device posture checks.</p>
+            </div>
+            <div class="card">
+                <h3>IT Admins</h3>
+                <p>Managing servers via secure shells (SSH) that are invisible to the public internet, protected by ZPA brokers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits & Conclusion -->
+    <section id="benefits">
+        <h2 class="gradient-text">Benefits & Conclusion</h2>
+        <div class="vuln-item">
+            <h3>Least Privilege Access</h3>
+            <p>Users only see what they are authorized to see. If they don't have permission for an app, it doesn't exist for them.</p>
+        </div>
+        <div class="vuln-item">
+            <h3>Reduced Attack Surface</h3>
+            <p>By moving applications behind the ZPA cloud, you eliminate inbound listener ports, making your infrastructure invisible to scanners.</p>
+        </div>
+        <div class="vuln-item">
+            <h3>Prevention of Lateral Movement</h3>
+            <p>Because users are connected to specific apps rather than the network, an infected machine cannot scan other assets in the data center.</p>
+        </div>
+        
+        <div style="margin-top: 60px; padding: 40px; border-radius: 16px; background: rgba(0, 212, 255, 0.05); border: 1px solid var(--primary);">
+            <h3>In Conclusion</h3>
+            <p>Zero Trust Architecture is not just a tool but a mindset. By implementing Zscaler Private Access, organizations can achieve a superior security posture that meets the demands of a remote-first, cloud-centric world. It protects data where it lives, verifies users where they are, and secures the modern enterprise.</p>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <h2 class="gradient-text">Project Team</h2>
+        <div class="grid-3">
+            <div class="card" style="text-align: center;">
+                <div style="width: 80px; height: 80px; background: #1e293b; border-radius: 50%; margin: 0 auto 15px;"></div>
+                <h3>Student Name 1</h3>
+                <p>Lead Security Architect</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <div style="width: 80px; height: 80px; background: #1e293b; border-radius: 50%; margin: 0 auto 15px;"></div>
+                <h3>Student Name 2</h3>
+                <p>Vulnerability Analyst</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <div style="width: 80px; height: 80px; background: #1e293b; border-radius: 50%; margin: 0 auto 15px;"></div>
+                <h3>Student Name 3</h3>
+                <p>ZPA Implementation Expert</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 100px; text-align: center; color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid var(--glass-border); padding-top: 40px;">
+            <p>&copy; 2026 Cybersecurity Project - Zero Trust ZPA Implementation</p>
+        </div>
+    </section>
+
+    <script src="main.js"></script>
+</body>
+</html>
